@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click me</title>
+
+    <style>
+        * {
+            cursor: none;
+        }
+        body, html {
+            background-color: #111115;
+            margin: 0;
+            color: white;
+            font-family: sans-serif;
+        }
+        div.button {
+            position: fixed;
+            height: 70px;
+            width: 120px;
+            padding: 20px;
+            transition-duration: .1s;
+        }
+        div.cursor {
+            position: fixed;
+            padding: 0;
+            border-radius: 50%;
+            transition-duration: 150ms;
+            transition-timing-function: linear;
+
+            height: 30px;
+            width: 30px;
+            border: 1px solid rgba(255,255,255,.5);
+            z-index: 99;
+        }
+        div.cursorOutline {
+            position: fixed;
+            padding: 0;
+            height: 10px;
+            width: 10px;
+            background-color: white;
+            border-radius: 50%;
+            z-index: 99;
+        }
+        button {
+            height: 100%;
+            width: 100%;
+            color: white;
+            background-color: rgba(255,255,255,.03);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="button" onmouseenter="hover(0)">
+        <button onclick="document.location.href = atob('aHR0cHM6Ly95b3V0dS5iZS9kUXc0dzlXZ1hjUQ==')">Click me</button>
+    </div>
+
+    <div class="button" onmouseenter="hover(1)">
+        <button onclick="document.location.href = atob('aHR0cHM6Ly95b3V0dS5iZS9kUXc0dzlXZ1hjUQ==')">Click me</button>
+    </div>
+
+    <div class="button" onmouseenter="hover(2)">
+        <button onclick="document.location.href = atob('aHR0cHM6Ly95b3V0dS5iZS9kUXc0dzlXZ1hjUQ==')">Click me</button>
+    </div>
+
+    <div class="button" onmouseenter="hover(3)">
+        <button onclick="document.location.href = atob('aHR0cHM6Ly95b3V0dS5iZS9kUXc0dzlXZ1hjUQ==')">Click me</button>
+    </div>
+
+    <div class="button" onmouseenter="hover(4)">
+        <button onclick="document.location.href = atob('aHR0cHM6Ly95b3V0dS5iZS9kUXc0dzlXZ1hjUQ==')">Click me</button>
+    </div>
+
+    <div class="button" onmouseenter="hover(5)">
+        <button onclick="document.location.href = atob('aHR0cHM6Ly95b3V0dS5iZS9kUXc0dzlXZ1hjUQ==')">Click me</button>
+    </div>
+
+    <div class="button" onmouseenter="hover(6)">
+        <button onclick="document.location.href = atob('aHR0cHM6Ly95b3V0dS5iZS9kUXc0dzlXZ1hjUQ==')">Click me</button>
+    </div>
+
+    <div class="button" onmouseenter="hover(7)">
+        <button onclick="document.location.href = atob('aHR0cHM6Ly95b3V0dS5iZS9kUXc0dzlXZ1hjUQ==')">Click me</button>
+    </div>
+
+    <div class="cursor"></div>
+    <div class="cursorOutline"></div>
+
+    <div id="egg" style="height: 100%; width: 100%; position: fixed; background-color: rgba(0,0,0,.5); backdrop-filter: blur(8px); display: none; justify-content: center; align-items: center;">
+        <div style="text-align: center;" id="confetti">
+            <h1>465778345</h1>
+            <h3>767797879867969776986796796977987767896976976976987698</h3>
+        </div>
+    </div>
+
+    <script src="https://cdn.rawgit.com/Haeresis/konami-code-js/master/src/konami-code.js"></script>
+
+    <script>
+        hover(0);
+        hover(1);
+        hover(2);
+        hover(3);
+        hover(4);
+        hover(5);
+        hover(6);
+        hover(7);
+
+        function hover(index) {
+            let widthMax = window.innerWidth - 200;
+            let heightMax = window.innerHeight - 100;
+            let left = Math.floor(Math.random() * widthMax);
+            let top = Math.floor(Math.random() * heightMax);
+            let div = document.getElementsByTagName("div")[index];
+            div.style.left = left + "px";
+            div.style.top = top + "px";
+        }
+
+        let index = 0;
+        const titles = ["...if you can", "Click", "Click me"];
+
+        setInterval(() => {
+            document.querySelector("title").innerHTML = titles[index]
+            index++;
+            if(index === 3) index = 0;
+        }, 1000);
+
+        let cursorX = 0;
+        let cursorY = 0;
+
+        document.onmousemove = (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+
+            const cursor = document.querySelector("div.cursorOutline");
+            cursor.style.left = cursorX + "px";
+            cursor.style.top = cursorY + "px";
+        };
+
+        setInterval(() => {
+            const cursor = document.querySelector("div.cursor");
+            cursor.style.left = cursorX - 10 + "px";
+            cursor.style.top = cursorY - 10 + "px";
+        }, 150);
+
+
+        function showEgg() {
+            document.querySelector("#egg").style.display = "flex";
+            document.querySelector("#egg").querySelector("h1").innerHTML = atob("RWFzdGVyIGVnZyBmb3VuZCE=");
+            document.querySelector("#egg").querySelector("h3").innerHTML = atob("WW91J3ZlIGVudGVyZWQgdGhlIGtvbmFtaSBjb2RlIG9uIHlvdXIga2V5Ym9hcmQgb3IgdG91Y2ggc2NyZWVuISBDb25ncmF0cyE=");
+        }
+
+        new KonamiCode(showEgg)
+    </script>
+</body>
+</html>
